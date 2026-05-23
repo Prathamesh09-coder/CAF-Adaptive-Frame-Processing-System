@@ -37,3 +37,26 @@ DECISION_THRESHOLDS = {
 
 # Logging
 LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
+
+# Transport and Optimization
+WEBSOCKET_TRANSPORT_MODE: str = os.getenv("WEBSOCKET_TRANSPORT_MODE", "binary") # binary or base64
+JPEG_COMPRESSION_QUALITY: int = int(os.getenv("JPEG_COMPRESSION_QUALITY", 60))
+WEBSOCKET_QUEUE_LIMIT: int = int(os.getenv("WEBSOCKET_QUEUE_LIMIT", 5)) # Drop oldest frames if queue exceeds this
+MAX_CPU_USAGE: float = float(os.getenv("MAX_CPU_USAGE", 90.0))
+FRAME_SIMILARITY_THRESHOLD: float = float(os.getenv("FRAME_SIMILARITY_THRESHOLD", 0.85)) # For deduplication
+MAX_SKIP_STREAK: int = int(os.getenv("MAX_SKIP_STREAK", 3)) # Force refresh after 3 skipped frames
+
+# Telemetry Sampling Rates (Seconds)
+TELEMETRY_RATES = {
+    "fps": 0.0,            # Every frame
+    "cpu": 1.0,            # Every 1 second
+    "drift": 3.0,          # Every 3 seconds
+    "replay": 5.0,         # Every 5 seconds
+}
+
+# Benchmarking Scenarios
+SCENARIO_PRESETS = {
+    "performance_optimized": {"motion_weight": 0.4, "threshold": 0.55, "model_size": "n"},
+    "balanced": {"motion_weight": 0.3, "threshold": 0.45, "model_size": "s"},
+    "accuracy_preserved": {"motion_weight": 0.2, "threshold": 0.35, "model_size": "m"},
+}

@@ -25,6 +25,7 @@ from app.core.database import connect_to_mongo, close_mongo_connection
 from app.routes.sessions import router as sessions_router
 from app.routes.upload import router as upload_router
 from app.routes.websocket import router as websocket_router
+from app.routes.comparison_websocket import router as comparison_router
 
 app = FastAPI(
     title="Adaptive Frame Processing System",
@@ -41,6 +42,7 @@ app.add_middleware(
 )
 
 app.include_router(websocket_router, tags=["WebSocket"])
+app.include_router(comparison_router, tags=["Comparison WebSocket"])
 app.include_router(upload_router, prefix="/api", tags=["Upload"])
 app.include_router(sessions_router, prefix="/api", tags=["Sessions"])
 
